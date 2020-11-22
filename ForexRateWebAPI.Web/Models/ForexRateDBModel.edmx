@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ForexRateDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Ccy" />
+          </Key>
+          <Property Name="Ccy" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForexRate">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Ccy" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Ccy" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Cash_Buy" Type="decimal" Precision="18" Scale="12" />
+          <Property Name="Cash_Sell" Type="decimal" Precision="18" Scale="12" />
+          <Property Name="Spot_Buy" Type="decimal" Precision="18" Scale="12" />
+          <Property Name="Spot_Sell" Type="decimal" Precision="18" Scale="12" />
+        </EntityType>
+        <EntityContainer Name="ForexRateDBModelStoreContainer">
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForexRate" EntityType="Self.ForexRate" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ForexRateDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Ccy" />
+          </Key>
+          <Property Name="Ccy" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForexRate">
+          <Key>
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Ccy" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Ccy" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Cash_Buy" Type="Decimal" Precision="18" Scale="12" />
+          <Property Name="Cash_Sell" Type="Decimal" Precision="18" Scale="12" />
+          <Property Name="Spot_Buy" Type="Decimal" Precision="18" Scale="12" />
+          <Property Name="Spot_Sell" Type="Decimal" Precision="18" Scale="12" />
+        </EntityType>
+        <EntityContainer Name="ForexRateDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Currency" EntityType="Self.Currency" />
+          <EntitySet Name="ForexRate" EntityType="Self.ForexRate" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ForexRateDBModelStoreContainer" CdmEntityContainer="ForexRateDBEntities">
+          <EntitySetMapping Name="Currency">
+            <EntityTypeMapping TypeName="ForexRateDBModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Ccy" ColumnName="Ccy" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForexRate">
+            <EntityTypeMapping TypeName="ForexRateDBModel.ForexRate">
+              <MappingFragment StoreEntitySet="ForexRate">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Ccy" ColumnName="Ccy" />
+                <ScalarProperty Name="Cash_Buy" ColumnName="Cash_Buy" />
+                <ScalarProperty Name="Cash_Sell" ColumnName="Cash_Sell" />
+                <ScalarProperty Name="Spot_Buy" ColumnName="Spot_Buy" />
+                <ScalarProperty Name="Spot_Sell" ColumnName="Spot_Sell" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

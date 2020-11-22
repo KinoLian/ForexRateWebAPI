@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ForexRateDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Ccy" />
+    </Key>
+    <Property Name="Ccy" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ForexRate">
+    <Key>
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Ccy" />
+    </Key>
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Ccy" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="Cash_Buy" Type="decimal" Precision="18" Scale="12" />
+    <Property Name="Cash_Sell" Type="decimal" Precision="18" Scale="12" />
+    <Property Name="Spot_Buy" Type="decimal" Precision="18" Scale="12" />
+    <Property Name="Spot_Sell" Type="decimal" Precision="18" Scale="12" />
+  </EntityType>
+  <EntityContainer Name="ForexRateDBModelStoreContainer">
+    <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ForexRate" EntityType="Self.ForexRate" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
